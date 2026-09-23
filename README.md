@@ -167,6 +167,11 @@ The API is available at `http://localhost:8000/api/v1` and interactive docs at
 `http://localhost:8000/docs`. Set `VITE_USE_MOCKS=false` in the frontend `.env`
 to use it.
 
+By default, bulk ingestion reads PDFs from `backend/data/source_invoices`. To use
+another local folder, set `INVOICE_SOURCE_FOLDER` before starting the backend.
+The Knowledge Base page reports the configured source folder and discovered PDF
+count; the browser does not upload that folder.
+
 ## Important Notes
 
 - Use synthetic documents only for testing.

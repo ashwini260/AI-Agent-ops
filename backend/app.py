@@ -4,6 +4,7 @@ from io import BytesIO
 from pathlib import Path
 import hashlib
 import math
+import os
 import re
 import uuid
 
@@ -13,7 +14,9 @@ from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 
 ROOT = Path(__file__).resolve().parent
+SOURCE_DIR = Path(os.getenv("INVOICE_SOURCE_FOLDER", str(ROOT / "data" / "source_invoices"))).expanduser()
 UPLOAD_DIR = ROOT / "data" / "uploads"
+SOURCE_DIR.mkdir(parents=True, exist_ok=True)
 UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
 app = FastAPI(title="AgentForge Document Ops API", version="1.0.0")
@@ -214,7 +217,8 @@ def ingestion_job(job_id: str):
 @app.get("/api/v1/ingestion/stats")
 def ingestion_stats():
     indexed = sum(d["vector_status"] == "INDEXED" for d in documents.values())
-    return {"source_folder": "data/source_invoices", "discovered_pdfs": len(documents), "processed": len(documents),
+    discovered_pdfs = len(list(SOURCE_DIR.glob("*.pdf")))
+    return {"source_folder": str(SOURCE_DIR), "discovered_pdfs": discovered_pdfs, "processed": len(documents),
             "succeeded": len(documents), "failed": 0, "skipped_duplicates": 0, "indexed_documents": indexed,
             "indexed_chunks": sum(d["chunk_count"] for d in documents.values()), "last_run": now(), "status": "COMPLETED"}
 

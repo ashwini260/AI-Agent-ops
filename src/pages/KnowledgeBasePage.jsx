@@ -101,13 +101,13 @@ export default function KnowledgeBasePage() {
         <div className="text-sm text-blue-800">
           <p className="font-medium">Backend-managed source folder</p>
           <p className="mt-1 text-blue-700">
-            The backend reads PDFs only from its configured{' '}
+            Place synthetic invoice PDFs in the backend&apos;s configured{' '}
             <code className="rounded bg-blue-100 px-1 py-0.5 text-xs">
               data/source_invoices
             </code>{' '}
-            folder. The browser does not upload all 18,000 files. The source folder
-            path is configured in the backend environment and cannot be changed
-            from the UI.
+            folder, then select <strong>Start / Resume Bulk Ingestion</strong>.
+            The browser does not need to upload the folder contents. Files selected
+            on the Upload Documents page are handled separately.
           </p>
         </div>
       </div>

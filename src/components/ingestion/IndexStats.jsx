@@ -28,6 +28,11 @@ export default function IndexStats({ stats }) {
             Vector Index Statistics
           </h3>
         </div>
+        {stats.source_folder && (
+          <p className="mb-3 rounded-md bg-slate-50 px-3 py-2 text-xs text-slate-600">
+            Source folder: <code className="font-mono">{stats.source_folder}</code>
+          </p>
+        )}
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
           <StatCard
             icon={FileText}
