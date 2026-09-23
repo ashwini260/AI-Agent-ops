@@ -151,7 +151,21 @@ database/sql/.gitkeep
 
 ## Backend
 
-The `backend/` folder contains `.gitkeep` placeholders only. The FastAPI backend (Python services, Ollama OCR, SQL Server storage, Chroma vector store) will be implemented separately. No Python business logic or SQL queries are included in this repository.
+The `backend/` folder contains a self-contained local FastAPI implementation with deterministic in-memory sample invoices. It does not require Ollama, SQL Server, or Chroma.
+
+### Running the backend
+
+```bash
+cd backend
+python -m venv .venv
+# Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+uvicorn app:app --reload --host 0.0.0.0 --port 8000
+```
+
+The API is available at `http://localhost:8000/api/v1` and interactive docs at
+`http://localhost:8000/docs`. Set `VITE_USE_MOCKS=false` in the frontend `.env`
+to use it.
 
 ## Important Notes
 
