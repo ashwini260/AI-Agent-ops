@@ -58,7 +58,7 @@ function CitationCardWrapper({ citation }) {
         Page {citation.page_number} | Chunk ID: {citation.chunk_id}
       </p>
       <p className="mt-1.5 text-xs text-slate-600 italic border-l-2 border-blue-300 pl-2">
-        "{citation.snippet}"
+        &ldquo;{citation.snippet}&rdquo;
       </p>
     </div>
   )

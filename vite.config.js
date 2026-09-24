@@ -13,4 +13,15 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          charts: ['recharts'],
+          icons: ['lucide-react'],
+          router: ['react-router-dom'],
+        },
+      },
+    },
+  },
 })

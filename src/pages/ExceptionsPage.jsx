@@ -9,7 +9,6 @@ import {
 import ExceptionTable from '../components/exceptions/ExceptionTable.jsx'
 import LoadingSpinner from '../components/common/LoadingSpinner.jsx'
 import ErrorMessage from '../components/common/ErrorMessage.jsx'
-import StatusBadge from '../components/common/StatusBadge.jsx'
 import { getExceptions, reviewException } from '../services/exceptionService.js'
 
 const typeOptions = [
@@ -71,8 +70,8 @@ export default function ExceptionsPage() {
     setPage(1)
   }
 
-  const startReview = (exc) => {
-    setReviewing(exc)
+  const startReview = (exception) => {
+    setReviewing(exception)
     setReviewForm({
       corrected_fields: {},
       reviewer_note: '',
@@ -162,7 +161,11 @@ export default function ExceptionsPage() {
           {loading ? (
             <LoadingSpinner label="Loading exceptions..." />
           ) : (
-            <ExceptionTable exceptions={exceptions} loading={false} />
+            <ExceptionTable
+              exceptions={exceptions}
+              loading={false}
+              onReview={startReview}
+            />
           )}
         </div>
 

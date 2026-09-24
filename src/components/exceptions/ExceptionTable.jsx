@@ -12,7 +12,7 @@ const typeLabels = {
   EXTRACTION_FAILED: 'Extraction Failed',
 }
 
-export default function ExceptionTable({ exceptions, loading }) {
+export default function ExceptionTable({ exceptions, loading, onReview }) {
   if (loading) {
     return (
       <div className="p-8 text-center text-sm text-slate-500">Loading exceptions...</div>
@@ -73,9 +73,13 @@ export default function ExceptionTable({ exceptions, loading }) {
               </td>
               <td className="px-3 py-2.5 text-center">
                 {exc.status === 'OPEN' ? (
-                  <span className="text-xs font-medium text-blue-600">
+                  <button
+                    type="button"
+                    onClick={() => onReview(exc)}
+                    className="text-xs font-medium text-blue-600 hover:underline"
+                  >
                     Review
-                  </span>
+                  </button>
                 ) : (
                   <span className="text-xs text-slate-400">Done</span>
                 )}

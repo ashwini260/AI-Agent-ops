@@ -69,7 +69,7 @@ export default function DocumentDetailPage() {
     setActionLoading('review')
     setActionResult(null)
     try {
-      const { data } = await reprocessDocument(documentId)
+      await reprocessDocument(documentId)
       setActionResult({ type: 'success', message: 'Document sent to review queue' })
     } catch (err) {
       setActionResult({ type: 'error', message: err.message })
@@ -82,8 +82,8 @@ export default function DocumentDetailPage() {
     setActionLoading('reindex')
     setActionResult(null)
     try {
-      const { data } = await reindexDocument(documentId)
-      setActionResult({ type: 'success', message: data.message })
+      await reindexDocument(documentId)
+      setActionResult({ type: 'success', message: 'Document index refreshed successfully.' })
     } catch (err) {
       setActionResult({ type: 'error', message: err.message })
     } finally {

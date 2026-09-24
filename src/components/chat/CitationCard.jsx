@@ -23,7 +23,7 @@ export default function CitationCard({ citation }) {
         <span><strong className="text-slate-600">Chunk ID:</strong> {citation.chunk_id}</span>
       </div>
       <p className="mt-2 text-sm text-slate-600 italic border-l-2 border-blue-300 pl-2">
-        "{citation.snippet}"
+        &ldquo;{citation.snippet}&rdquo;
       </p>
     </div>
   )
